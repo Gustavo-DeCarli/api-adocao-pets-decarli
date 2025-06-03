@@ -1,0 +1,18 @@
+const express = require("express");
+const PublicController = require("../controllers/public.controller");
+const router = express.Router();
+
+router.post(
+    "/users", 
+    PublicController.register
+);
+router.post(
+    "/login", 
+    PublicController.login
+);
+router.get(
+    "/pets/available", 
+    PublicController.petsAvailable
+);
+
+module.exports = router;
