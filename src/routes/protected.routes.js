@@ -2,6 +2,7 @@ const express = require("express");
 const {
     authenticateToken,
     authorizeRole,
+    authorizeRoleAdminOrOwner,
 } = require("../middlewares/auth.middleware");
 
 const ProtectedController = require("../controllers/protected.controller");
