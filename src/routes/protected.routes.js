@@ -43,7 +43,7 @@ router.get(
     "/pets/:id",
     authenticateToken,
     authorizeRole("admin"),
-    ProtectedController.searchPet
+    ProtectedController.findPet
 );
 router.post(
     "/pets",

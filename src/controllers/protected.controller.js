@@ -1,6 +1,12 @@
+const UserService = require("../services/userService");
+const PetsService = require("../services/petsService");
+const AdoptionsService = require("../services/adoptionsService");
+
 class ProtectedController {
-    static listUsers(req, res) {
+    static async listUsers(req, res) {
         try {
+            const result = await UserService.listUsers();
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -9,8 +15,10 @@ class ProtectedController {
         }
     }
 
-    static findUser(req, res) {
+    static async findUser(req, res) {
         try {
+            const result = await UserService.findUserById(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -19,8 +27,10 @@ class ProtectedController {
         }
     }
 
-    static updateUser(req, res) {
+    static async updateUser(req, res) {
         try {
+            const result = await UserService.updateUser(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -29,8 +39,10 @@ class ProtectedController {
         }
     }
 
-    static deleteUser(req, res) {
+    static async deleteUser(req, res) {
         try {
+            const result = await UserService.deleteUser(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -39,8 +51,10 @@ class ProtectedController {
         }
     }
 
-    static listPets(req, res) {
+    static async listPets(req, res) {
         try {
+            const result = await PetsService.listAllPets();
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -49,8 +63,10 @@ class ProtectedController {
         }
     }
 
-    static searchPet(req, res) {
+    static async findPet(req, res) {
         try {
+            const result = await PetsService.findPetById(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -59,8 +75,10 @@ class ProtectedController {
         }
     }
 
-    static addPet(req, res) {
+    static async addPet(req, res) {
         try {
+            const result = await PetsService.addPet(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -69,8 +87,10 @@ class ProtectedController {
         }
     }
 
-    static updatePet(req, res) {
+    static async updatePet(req, res) {
         try {
+            const result = await PetsService.updatePet(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -79,8 +99,10 @@ class ProtectedController {
         }
     }
 
-    static deletePet(req, res) {
+    static async deletePet(req, res) {
         try {
+            const result = await PetsService.deletePet(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -89,8 +111,10 @@ class ProtectedController {
         }
     }
 
-    static listAdoptions(req, res) {
+    static async listAdoptions(req, res) {
         try {
+            const result = await AdoptionsService.listAdoptions();
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",
@@ -99,8 +123,10 @@ class ProtectedController {
         }
     }
 
-    static addAdoption(req, res) {
+    static async addAdoption(req, res) {
         try {
+            const result = await AdoptionsService.addAdoption(req.body);
+            return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
                 message: "Erro",

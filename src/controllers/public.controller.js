@@ -1,9 +1,10 @@
-const PublicService = require("../services/publicService");
+const PetsService = require("../services/petsService");
+const UserService = require("../services/userService");
 
 class PublicController {
     static async register(req, res) {
         try {
-            const result = await PublicService.registerUser(req.body);
+            const result = await UserService.registerUser(req.body);
             return res.status(201).json(result);
         } catch (error) {
             return res.status(409).json({ message: error.message });
@@ -12,7 +13,7 @@ class PublicController {
 
     static async login(req, res) {
         try {
-            const result = await PublicService.loginUser(req.body);
+            const result = await UserService.loginUser(req.body);
             return res.status(200).json(result);
         } catch (error) {
             const status =
@@ -26,7 +27,7 @@ class PublicController {
 
     static async petsAvailable(req, res) {
         try {
-            const result = await PublicService.petsAvailable(req.body);
+            const result = await PetsService.petsAvailable(req.body);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({ message: error.message });
