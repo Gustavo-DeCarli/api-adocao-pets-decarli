@@ -24,10 +24,10 @@ class PetsModel {
     }
 
     static async addPet(pet) {
-        const { name, age, species, size, status, desciption } = pet;
+        const { name, age, species, size, desciption } = pet;
         const [result] = await db.query(
-            "INSERT INTO pets (name, age, species, size, status, desciption) VALUES (?, ?, ?, ?, ?, ?)",
-            [name, age, species, size, status, desciption]
+            "INSERT INTO pets (name, age, species, size, status, desciption) VALUES (?, ?, ?, ?, 'available', ?)",
+            [name, age, species, size, desciption]
         );
         return result.insertId;
     }
@@ -44,6 +44,14 @@ class PetsModel {
     static async deletePet(id) {
         const [result] = await db.query(
             "DELTE FROM pets WHERE id = ?",
+            [id]
+        );
+        return result.affectedRows > 0;
+    }
+
+    static async updatePetStatusAdopted(id) {
+        const [result] = await db.query(
+            "UPDATE pets SET VALUES status = 'adopted' WHERE id = ?",
             [id]
         );
         return result.affectedRows > 0;

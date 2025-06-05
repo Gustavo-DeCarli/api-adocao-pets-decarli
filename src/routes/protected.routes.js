@@ -70,6 +70,6 @@ router.get(
     authorizeRole("admin"),
     ProtectedController.listAdoptions
 );
-router.post("/adoptions", authenticateToken, ProtectedController.addAdoption);
+router.post("/adoptions", authenticateToken, authorizeRole("adopter"), ProtectedController.addAdoption);
 
 module.exports = router;

@@ -25,7 +25,7 @@ class UserService {
             throw new Error("Senha inválida");
         }
         const token = jwt.sign(
-            { email: user.email, role: user.role },
+            { id: user.id, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );

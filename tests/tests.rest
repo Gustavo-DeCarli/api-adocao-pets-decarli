@@ -1,0 +1,131 @@
+@baseURL = http://localhost:3000
+### Rota pública (acesso livre)
+GET {{baseURL}}/public/pets/available
+Content-Type: application/json
+
+### Cadastro de novo usuário (admin)
+POST {{baseURL}}/public/users
+Content-Type: application/json
+
+{
+    "name": "Gustavo",
+    "email": "teste@gmail.com",
+    "password": "senha123",
+    "phone": "5499998888",
+    "role": "admin"
+}
+
+### Cadastro de novo usuário (adopter)
+POST {{baseURL}}/public/users
+Content-Type: application/json
+
+{
+ "name": "João",
+ "email": "joaozinho@gmail.com",
+ "password": "senha123",
+ "phone": "5499997777",
+ "role": "adopter"
+}
+
+### Login do novo usuário admin (pegar o token gerado abaixo)
+POST {{baseURL}}/public/login
+Content-Type: application/json
+
+{
+ "email": "teste@gmail.com",
+ "password": "senha123"
+}
+
+### Login do novo usuário adopter (pegar o token gerado abaixo)
+POST {{baseURL}}/public/login
+Content-Type: application/json
+
+{
+ "email": "joaozinho@gmail.com",
+ "password": "senha123"
+}
+
+### Lista todos os usuários
+GET {{baseURL}}/protected/users
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Busca usuário por ID
+GET {{baseURL}}/protected/users/1
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Atualiza dados do usuário
+PUT {{baseURL}}/protected/users/1
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+Content-Type: application/json
+
+{
+ "name": "Gustavo 2",
+ "email": "teste2@gmail.com",
+ "password": "senha321",
+ "phone": "5499998887",
+ "role": "admin"
+}
+
+### Remove um usuário
+DELETE {{baseURL}}/protected/users/1
+Content-Type: application/application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Lista todos os pets (inclusive os adotados)
+GET {{baseURL}}/protected/pets
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Busca pet por ID
+GET {{baseURL}}/protected/pets/1
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Cadastra um novo pet
+POST {{baseURL}}/protected/pets/1
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+{
+ "name": "Olavo",
+ "age": 2,
+ "species": "dog",
+ "size": "small",
+ "description": "Dócil"
+}
+
+### Atualiza os dados de um pet
+PUT {{baseURL}}/protected/pets/1
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+{
+ "name": "Olavo2",
+ "age": 3,
+ "species": "dog",
+ "size": "medium",
+ "description": "Dócil"
+}
+
+### Remove um pet do sistema (somente se status = available)
+DELETE {{baseURL}}/protected/pets/1
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Lista todas as adoções realizadas
+GET {{baseURL}}/protected/adoptions
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+### Realiza a adoção de um pet
+GET {{baseURL}}/protected/adoptions
+Content-Type: application/json
+Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+
+{
+ "user_id": 2,
+ "pet_id": 1,
+ "adoption_date": "22/05/2025"
+}

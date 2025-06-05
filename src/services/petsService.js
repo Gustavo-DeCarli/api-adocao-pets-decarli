@@ -57,6 +57,9 @@ class PublicService {
         if (!existing) {
             throw new Error("Pet não existe");
         }
+        if(existing.status == 'adopted') {
+            throw new Error("Pet já adotado não pode ser removido");
+        }
         const petSuccess = PetsModel.deletePet(id);
         if (!petSuccess) {
             throw new Error("Erro ao deletar pet, verifique as informações!");

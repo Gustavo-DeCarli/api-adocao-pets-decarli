@@ -22,7 +22,11 @@ class AdoptionsService {
         if (PetExisting) {
             throw new Error("Pet não existe");
         }
+        if(PetExisting.status == 'adopted') {
+            throw new Error("Pet já adotado");
+        }
         const id = await AdoptionsModel.addAdoption(adoption);
+        await PetsModel.updatePetStatusAdopted(pet_id)
         return { message: "Adoção registrada com sucesso", id };
     }
 
