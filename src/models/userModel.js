@@ -8,10 +8,11 @@ class UserModel {
     }
 
     static async create(user) {
-        const { name, email, password, phone } = user;
+        const { name, email, password, phone, role } = user;
+        const roleFinal = !role ? 'adopter' : role;
         const [result] = await db.query(
-            "INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, 'adopter')",
-            [name, email, password, phone]
+            "INSERT INTO users (name, email, password, phone, role) VALUES (?, ?, ?, ?, ?)",
+            [name, email, password, phone, roleFinal]
         );
         return result.insertId;
     }
@@ -34,7 +35,7 @@ class UserModel {
     static async updateUser(user) {
         const { id, name, email, password, phone } = user;
         const [result] = await db.query(
-            "UPDATE users SET VALUES name = ?, email = ?, password = ?, phone = ? WHERE id = ?",
+            "UPDATE users SET name = ?, email = ?, password = ?, phone = ? WHERE id = ?",
             [name, email, password, phone, id]
         );
         return result.affectedRows > 0;

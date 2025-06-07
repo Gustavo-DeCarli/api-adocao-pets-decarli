@@ -24,26 +24,26 @@ class PetsModel {
     }
 
     static async addPet(pet) {
-        const { name, age, species, size, desciption } = pet;
+        const { name, age, species, size, description  } = pet;
         const [result] = await db.query(
-            "INSERT INTO pets (name, age, species, size, status, desciption) VALUES (?, ?, ?, ?, 'available', ?)",
-            [name, age, species, size, desciption]
+            "INSERT INTO pets (name, age, species, size, status, description) VALUES (?, ?, ?, ?, 'available', ?)",
+            [name, age, species, size, description ]
         );
         return result.insertId;
     }
 
     static async updatePet(pet) {
-        const { name, age, species, size, status, desciption, id } = pet;
+        const { name, age, species, size, description, id } = pet;
         const [result] = await db.query(
-            "UPDATE pets SET VALUES name = ?, age = ?, species = ?, size = ?, status = ?, desciption = ? WHERE id = ?",
-            [name, age, species, size, status, desciption, id]
+            "UPDATE pets SET name = ?, age = ?, species = ?, size = ?, description = ? WHERE id = ?",
+            [name, age, species, size, description, id]
         );
         return result.affectedRows > 0;
     }
 
     static async deletePet(id) {
         const [result] = await db.query(
-            "DELTE FROM pets WHERE id = ?",
+            "DELETE FROM pets WHERE id = ?",
             [id]
         );
         return result.affectedRows > 0;
@@ -51,7 +51,7 @@ class PetsModel {
 
     static async updatePetStatusAdopted(id) {
         const [result] = await db.query(
-            "UPDATE pets SET VALUES status = 'adopted' WHERE id = ?",
+            "UPDATE pets SET status = 'adopted' WHERE id = ?",
             [id]
         );
         return result.affectedRows > 0;

@@ -22,10 +22,11 @@ function authorizeRole(role) {
 
 function authorizeRoleAdminOrOwner() {
     return (req, res, next) => {
-        if (req.user.email !== req.body.email || req.user.role != 'admin') {
+        if (req.user.id == req.params.id || req.user.role == 'admin') {
+            next();
+        } else {
             return res.status(403).json({ message: "Acesso negado" });
         }
-        next();
     };
 }
 

@@ -48,15 +48,16 @@ class UserService {
         return { user };
     }
 
-    static async updateUser({ user }) {
-        const { id, password } = user;
+    static async updateUser(user, id) {
+        user.id = id;
+        const { password } = user;
         const existing = await UserModel.findUserById(id);
         if (!existing) {
             throw new Error("Usuário não existe");
         }
         const hashed = await bcrypt.hash(password, 10);
         user.password = hashed;
-        const userSuccess = UserModel.updateUser(user);
+        const userSuccess = await UserModel.updateUser(user);
         if (!userSuccess) {
             throw new Error("Erro ao atualizar usuário, verifique as informações!");
         }
@@ -68,7 +69,7 @@ class UserService {
         if (!existing) {
             throw new Error("Usuário não existe");
         }
-        const userSuccess = UserModel.deleteUser(id);
+        const userSuccess = await UserModel.deleteUser(id);
         if (!userSuccess) {
             throw new Error("Erro ao deletar usuário, verifique as informações!");
         }

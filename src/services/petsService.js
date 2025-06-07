@@ -35,24 +35,23 @@ class PublicService {
         if (!animal) {
             throw new Error("Erro ao adicionar pet!");
         }
-        return { animal };
+        return { message: "Usuário registrado com sucesso", animal };
     }
 
-    static async updatePet(pet) {
-        const { id } = pet;
+    static async updatePet(pet, id) {
         const existing = await PetsModel.findPetById(id);
         if (!existing) {
             throw new Error("Pet não existe");
         }
-        const petSuccess = PetsModel.updatePet(pet);
+        pet.id = id;
+        const petSuccess = await PetsModel.updatePet(pet);
         if (!petSuccess) {
             throw new Error("Erro ao atualizar pet, verifique as informações!");
         }
-        return { petSuccess };
+        return { message: "Pet registrado com sucesso" };
     }
 
-    static async deletePet(pet) {
-        const { id } = pet;
+    static async deletePet({id}) {
         const existing = await PetsModel.findPetById(id);
         if (!existing) {
             throw new Error("Pet não existe");
@@ -60,11 +59,11 @@ class PublicService {
         if(existing.status == 'adopted') {
             throw new Error("Pet já adotado não pode ser removido");
         }
-        const petSuccess = PetsModel.deletePet(id);
+        const petSuccess = await PetsModel.deletePet(id);
         if (!petSuccess) {
             throw new Error("Erro ao deletar pet, verifique as informações!");
         }
-        return { petSuccess };
+        return { message: "Pet deletado com sucesso" };
     }
 
 }

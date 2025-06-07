@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS adoptions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     pet_id INT NOT NULL,
-    adoption_date DATE NOT NULL,
+    adoption_date CHAR(10) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (pet_id) REFERENCES pets(id)
 );

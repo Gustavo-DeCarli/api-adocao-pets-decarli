@@ -27,6 +27,18 @@ Content-Type: application/json
  "role": "adopter"
 }
 
+### Cadastro de novo usuário (adopter)
+POST {{baseURL}}/public/users
+Content-Type: application/json
+
+{
+ "name": "João para excluir",
+ "email": "joaozinho25@gmail.com",
+ "password": "senha123",
+ "phone": "5499997777",
+ "role": "adopter"
+}
+
 ### Login do novo usuário admin (pegar o token gerado abaixo)
 POST {{baseURL}}/public/login
 Content-Type: application/json
@@ -69,7 +81,7 @@ Content-Type: application/json
 }
 
 ### Remove um usuário
-DELETE {{baseURL}}/protected/users/1
+DELETE {{baseURL}}/protected/users/3
 Content-Type: application/application/json
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
@@ -84,9 +96,9 @@ Content-Type: application/json
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
 ### Cadastra um novo pet
-POST {{baseURL}}/protected/pets/1
-Content-Type: application/json
+POST {{baseURL}}/protected/pets
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+Content-Type: application/json
 
 {
  "name": "Olavo",
@@ -98,8 +110,8 @@ Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
 ### Atualiza os dados de um pet
 PUT {{baseURL}}/protected/pets/1
-Content-Type: application/json
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
+Content-Type: application/json
 
 {
  "name": "Olavo2",
@@ -110,7 +122,7 @@ Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 }
 
 ### Remove um pet do sistema (somente se status = available)
-DELETE {{baseURL}}/protected/pets/1
+DELETE {{baseURL}}/protected/pets/16
 Content-Type: application/json
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
@@ -120,12 +132,12 @@ Content-Type: application/json
 Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
 ### Realiza a adoção de um pet
-GET {{baseURL}}/protected/adoptions
+POST {{baseURL}}/protected/adoptions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkb3B0ZXIiLCJpYXQiOjE3NDkyNTI4MzIsImV4cCI6MTc0OTI1NjQzMn0.FQsWigwKfdkYPRppN0MfHDMQ-DdNdPO6wsTKZKlBa5U
 Content-Type: application/json
-Authorization: Bearer {{COLE_SEU_TOKEN_AQUI}}
 
 {
  "user_id": 2,
- "pet_id": 1,
+ "pet_id": 2,
  "adoption_date": "22/05/2025"
 }

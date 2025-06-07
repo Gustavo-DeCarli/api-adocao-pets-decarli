@@ -16,10 +16,10 @@ class AdoptionsService {
         const { user_id, pet_id } = adoption;
         const userExisting = await UserModel.findUserById(user_id);
         const PetExisting = await PetsModel.findPetById(pet_id);
-        if (userExisting) {
+        if (!userExisting) {
             throw new Error("Usuário não existe");
         }
-        if (PetExisting) {
+        if (!PetExisting) {
             throw new Error("Pet não existe");
         }
         if(PetExisting.status == 'adopted') {

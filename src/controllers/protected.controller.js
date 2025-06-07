@@ -17,7 +17,7 @@ class ProtectedController {
 
     static async findUser(req, res) {
         try {
-            const result = await UserService.findUserById(req.body);
+            const result = await UserService.findUserById(req.params);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
@@ -29,7 +29,7 @@ class ProtectedController {
 
     static async updateUser(req, res) {
         try {
-            const result = await UserService.updateUser(req.body);
+            const result = await UserService.updateUser(req.body, req.params.id);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
@@ -41,7 +41,7 @@ class ProtectedController {
 
     static async deleteUser(req, res) {
         try {
-            const result = await UserService.deleteUser(req.body);
+            const result = await UserService.deleteUser(req.params);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
@@ -65,7 +65,7 @@ class ProtectedController {
 
     static async findPet(req, res) {
         try {
-            const result = await PetsService.findPetById(req.body);
+            const result = await PetsService.findPetById(req.params);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
@@ -89,7 +89,7 @@ class ProtectedController {
 
     static async updatePet(req, res) {
         try {
-            const result = await PetsService.updatePet(req.body);
+            const result = await PetsService.updatePet(req.body, req.params.id);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
@@ -101,7 +101,7 @@ class ProtectedController {
 
     static async deletePet(req, res) {
         try {
-            const result = await PetsService.deletePet(req.body);
+            const result = await PetsService.deletePet(req.params);
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({
