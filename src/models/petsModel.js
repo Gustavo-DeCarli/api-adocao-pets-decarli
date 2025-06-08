@@ -5,7 +5,7 @@ class PetsModel {
         const [rows] = await db.query(
             "SELECT * FROM pets WHERE status = 'available'"
         );
-        return rows[0];
+        return rows;
     }
 
     static async getAllAnimals() {
