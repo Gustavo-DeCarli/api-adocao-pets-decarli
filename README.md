@@ -59,7 +59,7 @@ npm run dev
     <li>Express</li>
     <li>JWT para autenticação</li>
     <li>Middleware para autorização por perfil (admin, adopter)</li>
-    <li>Banco de dados MySQL (ou outro relacional)</li>
+    <li>Banco de dados MySQL</li>
 </ul>
 
 <hr />
